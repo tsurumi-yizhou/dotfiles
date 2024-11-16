@@ -55,7 +55,7 @@ export default {
     const config = {
       log: {
         disabled: false,
-        level: "error",
+        level: "debug",
       },
       experimental: {
         cache_file: {
@@ -69,6 +69,32 @@ export default {
         },
       },
       inbounds: [
+        {
+          type: "tun",
+          tag: "tun-in",
+          address: "172.19.0.1/30",
+          domain_strategy: "prefer_ipv4",
+          sniff: true,
+          sniff_override_destination: true,
+          stack: "system",
+          auto_route: true,
+          strict_route: false,
+          exclude_package: [
+            "com.huawei.hwid",
+            "com.samsung.android.allshare.service.mediashare",
+            "com.samsung.android.smartmirroring",
+            "com.samsung.android.service.stplatform",
+            "com.samsung.android.oneconnect",
+            "com.samsung.android.swsportplugin",
+            "com.samsung.android.app.sharelive",
+            "com.samsung.android.aware.service",
+            "com.samsung.android.mdx.kit",
+            "com.chinamworld.bocmbci",
+            "com.unionpay",
+            "cmb.pb",
+          ],
+          udp_disable_domain_unmapping: true,
+        },
         {
           type: "socks",
           tag: "socks-in",
@@ -195,36 +221,6 @@ export default {
         rule_set: [] as RuleSet[],
       },
     } satisfies Config;
-
-    const ua = request.headers.get("User-Agent");
-    if (ua?.includes("android") || ua?.includes("Android")) {
-      config.inbounds.push({
-        type: "tun",
-        tag: "tun-in",
-        domain_strategy: "prefer_ipv4",
-        sniff: true,
-        sniff_override_destination: true,
-        stack: "system",
-        auto_route: true,
-        strict_route: true,
-        inet4_address: "172.19.0.1/30",
-        exclude_package: [
-          "com.huawei.hwid",
-          "com.samsung.android.allshare.service.mediashare",
-          "com.samsung.android.smartmirroring",
-          "com.samsung.android.service.stplatform",
-          "com.samsung.android.oneconnect",
-          "com.samsung.android.swsportplugin",
-          "com.samsung.android.app.sharelive",
-          "com.samsung.android.aware.service",
-          "com.samsung.android.mdx.kit",
-          "com.chinamworld.bocmbci",
-          "com.unionpay",
-          "cmb.pb",
-        ],
-        udp_disable_domain_unmapping: true,
-      });
-    }
 
     adPass(config);
 
