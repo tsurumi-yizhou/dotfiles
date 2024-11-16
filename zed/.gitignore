@@ -1,0 +1,3 @@
+conversations/*.json
+embeddings/*.mdb
+prompts/*.mdb

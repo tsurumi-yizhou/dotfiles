@@ -1,0 +1,57 @@
+{
+  "auto_save": "on_window_change",
+  "theme": "Catppuccin Macchiato",
+  "proxy": "http://127.0.0.1:7890",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "file_types": {
+    "C++": ["h", "c", "hpp", "cpp", "cppm"]
+  },
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+  "lang": {
+    "C++": {
+      "format_on_save": true,
+      "formatter": "language_server",
+      "tab_size": 4
+    }
+  },
+  "lsp": {
+    "clangd": {
+      "binary": {
+        "path": "/opt/homebrew/opt/llvm/clangd",
+        "arguments": [
+          "clangd",
+          "-j=12",
+          "--experimental-modules-support",
+          "--enable-config",
+          "--background-index",
+          "--pch-storage=memory",
+          "--query-driver=/opt/homebrew/opt/llvm/bin/clang++",
+          "--compile-commands-dir=build",
+          "--clang-tidy",
+          "--all-scopes-completion",
+          "--completion-style=detailed",
+          "--limit-references=3000",
+          "--limit-results=350"
+        ]
+      }
+    }
+  },
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "version": "2"
+  }
+}
