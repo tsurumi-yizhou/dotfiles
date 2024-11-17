@@ -55,7 +55,7 @@ export default {
     const config = {
       log: {
         disabled: false,
-        level: "debug",
+        level: "error",
       },
       experimental: {
         cache_file: {
