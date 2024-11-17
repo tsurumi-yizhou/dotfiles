@@ -2,7 +2,7 @@ import { Config } from "../../config/config";
 
 export function gmailPass(config: Config) {
   config.route.rules.push({
-    domain: ["smtp.gmail.com"],
+    domain: ["smtp.gmail.com", "imap.gmail.com", "pop3.gmail.com"],
     outbound: "Gmail",
   });
   config.outbounds.push({
