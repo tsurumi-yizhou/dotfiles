@@ -43,7 +43,7 @@ export default {
     const groups = countries
       .map((country) => {
         return {
-          type: "selector",
+          type: "urltest",
           tag: country.zh,
           outbounds: nodes
             .filter((node) => node.tag.includes(country.emoji))
@@ -72,7 +72,7 @@ export default {
         {
           type: "tun",
           tag: "tun-in",
-          address: "172.19.0.1/30",
+          address: "172.18.0.1/30",
           domain_strategy: "prefer_ipv4",
           sniff: true,
           sniff_override_destination: true,
@@ -94,24 +94,6 @@ export default {
             "cmb.pb",
           ],
           udp_disable_domain_unmapping: true,
-        },
-        {
-          type: "socks",
-          tag: "socks-in",
-          domain_strategy: "prefer_ipv4",
-          sniff: true,
-          sniff_override_destination: true,
-          listen: "0.0.0.0",
-          listen_port: 1080,
-        },
-        {
-          type: "http",
-          tag: "http-in",
-          domain_strategy: "prefer_ipv4",
-          sniff: true,
-          sniff_override_destination: true,
-          listen: "0.0.0.0",
-          listen_port: 7890,
         },
       ],
       outbounds: [
